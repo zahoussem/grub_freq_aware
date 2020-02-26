@@ -27,8 +27,8 @@ namespace task {
     void display();
     double utilization(double s);
     ~Task();
+    int arm_act_cont_timer(task::Task *tau);
 
   };
 }
-
 #endif

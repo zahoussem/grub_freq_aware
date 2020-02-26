@@ -45,7 +45,7 @@ namespace platform {
   void Platform::print_alloc(){
     std::cout<<"[C-B" <<std::endl;
     for (int i=0;i<processors->size;i++)
-      processors->get(i)->print_ts();
+      processors->get(i)->print_tq();
   }
 
   /* 

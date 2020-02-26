@@ -5,10 +5,10 @@ DOXYGEN =doxygen
 
 SOURCES = main.cpp task/task.cpp platform/processor.cpp			\
 platform/platform.cpp task/taskset.cpp task/job.cpp common/list.cpp	\
-common/common.cpp
+common/common.cpp sim_engine/event.cpp sim_engine/sim_engine.cpp
 
 
-list: common/common.o common/list.o   task/task.o task/taskset.o task/job.o   platform/platform.o platform/processor.o main.cpp
+list: common/common.o common/list.o   task/task.o task/taskset.o task/job.o platform/platform.o platform/processor.o main.cpp
 	$(CC) $(CFLAGS) -g -Wall -o $(EXECUTABLE) $(SOURCES)
 
 %.o : %.cpp

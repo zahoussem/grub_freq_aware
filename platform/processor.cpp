@@ -2,41 +2,56 @@
 
 namespace platform{
 
-  /***********************common functions ***********************************/
   Processor::Processor() {
-    this->ts = new task::Taskset(-1);
+    this->tq = new task::Taskset(-1);
   }
 
   bool Processor::check_utilization(double speed){
-    return ts->utilization(speed)>1;
+    return tq->utilization(speed)>1;
   }
 
+
+  
   Processor::Processor(int id) {
     this->id=id; 
-    this->ts = new task::Taskset(id);
+    this->tq = new task::Taskset(id);
   }
 
+  /**  
+   * setter of id 
+   * @param id The id to set 
+   */
   void Processor::_id(int id){
     this->id = id;
   }
-  
+
+  /**
+   * Getter of id 
+   */ 
   int Processor::_id(){
     return id;
   }
 
-  void Processor::print_ts(){
+  void Processor::print_tq(){
     std::cout<<"[Proc : "<<_id()<<"=> ";
-    for (int i=0;i<ts->_size();i++)
-      std::cout<<ts->get(i)->_id()<<",";
+    for (int i=0;i<tq->_size();i++)
+      std::cout<<tq->get(i)->_id()<<",";
     std::cout<<"]"<<std::endl;
   }
-    
-  void Processor::_ts(task::Taskset *ts){
-    this->ts = ts;
+
+  /**  
+   * setter of tq 
+   * @param tq The tq to set 
+   */
+  void Processor::_tq(task::Taskset *tq){
+    this->tq = tq;
   }
 
-  task::Taskset *Processor::_ts(){
-    return ts;
+  /**
+   * Getter of tq 
+   */ 
+  task::Taskset *Processor::_tq(){
+    return tq;
   }
 
 

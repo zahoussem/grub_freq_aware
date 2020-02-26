@@ -88,4 +88,11 @@ namespace task {
   Task::~Task(){
   }
 
+
+  
+  int Task::arm_act_cont_timer(task::Task *tau){
+  // This function adds an event of active_contending to the event list
+  return 0; 
+}
+
 }
