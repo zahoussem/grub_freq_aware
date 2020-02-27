@@ -3,6 +3,7 @@
 
 #include "../task/taskset.hpp"
 #include "../task/task.hpp"
+#include "../task/runqueue.hpp"
 
 #include <climits>
 
@@ -11,6 +12,7 @@
 namespace task{
   class Taskset;
   class Task;
+  class Runqueue;
 }
 
 namespace platform{
@@ -19,9 +21,12 @@ namespace platform{
   private:
     int id;
     task::Taskset *tq;
-    //    std::priority_queue<int, task::Task> rq;
+    task::Runqueue *rq; 
 
   public:
+    task::Runqueue * _rq();
+    void _rq(task::Runqueue * rq );
+    
     Processor();
     Processor(int id);
     void _id(int id);
@@ -31,6 +36,8 @@ namespace platform{
     task::Taskset * _tq();
     Processor* copy();
     bool check_utilization(double speed);
+
+    
   };
 
 }

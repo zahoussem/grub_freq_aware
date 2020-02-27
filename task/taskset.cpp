@@ -14,6 +14,11 @@ namespace task{
     return  (a + (b - a)*(rand() / (double) RAND_MAX));
   }
 
+
+  bool Taskset::check_acceptance(Task *tau){
+    return false;
+  }
+
   
   /**
    *  UUniFast generation function

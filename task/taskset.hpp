@@ -24,7 +24,7 @@ namespace task {
     common::List<double> *UUniFastDiscard(int nbT,double u,int nbSet);
     common::List<double> *UUniFast(int nbT,double u);
     double  randomDouble(double a, double b);
-    
+    bool check_acceptance(Task *tau);
 
     double utilization(double speed);
     int _size();

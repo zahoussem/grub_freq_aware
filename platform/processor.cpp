@@ -5,12 +5,25 @@ namespace platform{
   Processor::Processor() {
     this->tq = new task::Taskset(-1);
   }
-
+  
   bool Processor::check_utilization(double speed){
     return tq->utilization(speed)>1;
   }
 
+  /**  
+   * setter of rq
+   * @param rq The rq to set
+   */
+  void Processor::_rq(task::Runqueue * rq){
+    this->rq=rq;
+  }
 
+  /**  
+   * Getter of rq
+   */
+  task::Runqueue * Processor::_rq(){
+    return this->rq;
+  }
   
   Processor::Processor(int id) {
     this->id=id; 
@@ -53,9 +66,4 @@ namespace platform{
   task::Taskset *Processor::_tq(){
     return tq;
   }
-
-
 }
-
-
-

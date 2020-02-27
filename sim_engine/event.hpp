@@ -2,7 +2,7 @@
 #define EVENT_HPP
 
 #include "../task/task.hpp"
-
+#include "../common/common.hpp"
 
 #define TASK_ARRIVAL 0
 #define TASK_KILLED 1 
@@ -19,14 +19,15 @@ namespace sim_engine {
     int type;
     int sig;
     int id;
-    // Houssam : Not sure if sig is important
-    // Houssam : Will check later 
-    void (*process)(task::Task * tau, int sig);
+    
   public:
+    void assign_signal_process();
+    void (*process)(task::Task * tau, int sig);
     Event(int id, double time, task::Task * tau, int type, int sig);
     ~Event();
     int _id();
     void _id(int id);
+    
     double _time();
     void _time(double t);
     task::Task * _task();
