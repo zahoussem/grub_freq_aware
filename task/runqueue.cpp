@@ -38,11 +38,15 @@ namespace task {
       this->a_bw=a_bw;
 }
   
-  void add_bw(double bw){
+  void Runqueue::add_bw(double bw){
     return;
   }
 
-  
+
+  bool Runqueue::add(Task * tau){
+    return true;
+  }
+
 
   
   bool Runqueue::remove(Task * tau){

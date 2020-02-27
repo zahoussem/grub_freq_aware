@@ -2,13 +2,6 @@
 #define TASK_HPP
 
 
-#define ACTIVE_CONTENDING 0
-#define ACTIVE_NON_CONTENDING 1
-#define INACTIVE 2
-
-// namespace platform{
-//   class Processor;
-// }
 
 #include "../platform/processor.hpp"
 

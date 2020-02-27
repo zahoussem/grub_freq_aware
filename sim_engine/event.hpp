@@ -36,6 +36,7 @@ namespace sim_engine {
     void _sig(int sig);
     int _type();
     int _sig();
+    void display();
     
   };
 

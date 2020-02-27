@@ -18,9 +18,14 @@ namespace sim_engine {
 
   
   void SimEngine::simulate(double sim_time){
-    double t;
+    double t=0;
+    printf("here ? \n");
     while (t<= sim_time && !ev_list->size()==0){
+      printf("entered ? \n");
       Event *ev = pop_event();
+      printf("poped %p \n", ev);
+      ev->display();
+      printf("not ispl %p \n", ev->_task());
       t=ev->_time();
       (*(ev->process))(ev->_task(), ev->_sig());
     }

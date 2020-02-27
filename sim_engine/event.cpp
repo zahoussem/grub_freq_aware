@@ -108,5 +108,11 @@ namespace sim_engine {
   }
   Event::~Event(){
   }
+
+  void Event::display(){
+    std::cout<<"[Event Id : "<< id << ", t:"<<time <<// ",
+						     // Task:"<<task->_id()
+						       ", Type:"<< type<<", Sig:"<<sig <<"]"<<std::endl; 
+  }
 }
   
