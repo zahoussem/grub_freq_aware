@@ -6,7 +6,7 @@ namespace platform {
   /**
    * Getter of engines 
    */ 
-  common::List<Processor *> *Platform::_processors(){
+  std::vector<Processor *> *Platform::_processors(){
     return processors;
   }
 
@@ -16,13 +16,13 @@ namespace platform {
    */
   
   int Platform::_size(){
-    return processors->size;
+    return processors->size();
   }
   /* 
    * Constructor of Platform 
    */ 
   Platform::Platform(){
-    this->processors=new common::List<Processor *>();
+    this->processors=new std::vector<Processor *>();
   }
 
   /* 
@@ -36,7 +36,7 @@ namespace platform {
    * @param p: Processor to add 
    */
   void Platform::add(Processor *p){
-    this->processors->add_at_head(new common::Node<Processor *> (p));
+    this->processors->push_back(p);
   }
 
   /* 
@@ -44,8 +44,8 @@ namespace platform {
    */ 
   void Platform::print_alloc(){
     std::cout<<"[C-B" <<std::endl;
-    for (int i=0;i<processors->size;i++)
-      processors->get(i)->print_tq();
+    for(Processor * p : (*processors)) 
+      p->print_tq();
   }
 
   /* 
@@ -54,9 +54,9 @@ namespace platform {
    * @return The processor having identifier id and  NULL if not found  
    */
   Processor * Platform::find_processor(int id){
-    for (int i=0;i<processors->size;i++)
-      if (processors->get(i)->_id()==id)
-	return processors->get(i);
+     for(Processor * p : (*processors)) 
+      if (p->_id()==id)
+	return p;
     return NULL;
   }
 
@@ -64,7 +64,7 @@ namespace platform {
    * setter of processors 
    * @param processors The processors to set 
    */
-  void Platform::_processors(common::List<Processor *> * processors){
+  void Platform::_processors(std::vector<Processor *> * processors){
     this->processors = processors;
   }
 
@@ -74,7 +74,19 @@ namespace platform {
    * @return The processor indexed by i 
    */ 
   Processor * Platform::get(int i){
-    return processors->get(i);
+    return processors->at(i);
+  }
+
+
+  bool Platform::order_processors(int order){
+
+    // Houssam : I need to write this function 
+    //   // Using lambda expressions in C++11
+    // sort(vec.begin(), vec.end(), [](const MyStruct& lhs, const MyStruct& rhs) {
+    //   return lhs.key < rhs.key;
+    // });
+
+    return false;
   }
 }
 

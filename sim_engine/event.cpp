@@ -7,7 +7,7 @@ namespace sim_engine {
    * Getter of time 
    */ 
   double Event::_time(){
-    return  this->time;
+    return this->time;
   }
   
   /**  
@@ -32,14 +32,12 @@ namespace sim_engine {
     this->type=type;
   }
 
-
   /**
    * Getter of sig 
    */ 
   int Event::_sig(){
     return this->sig;
   }
-
   
   /**  
    * setter of sig 
@@ -49,19 +47,18 @@ namespace sim_engine {
     this->sig = sig;
   }
  
-  
   /**
    * Getter of task 
    */ 
-  task::Task * Event::_task(){
-    return this->task;
+  task::Job * Event::_job(){
+    return this->job;
   }
   /**  
    * setter of task 
    * @param task The task to set 
    */
-  void Event::_task(task::Task *tau){
-    this->task = tau;
+  void Event::_job(task::Job *job){
+    this->job = job;
   }
 
   /**  
@@ -79,16 +76,45 @@ namespace sim_engine {
     return this->id;
   }
 
-  Event::Event(int id, double time, task::Task * tau,
+  /** 
+   * Constructor of class event
+   * @param id The event identifier 
+   * @param time the time of the event  
+   * @param job The simulated entity
+   * @param type the type of the event 
+   * @param sig the processing signal
+   */ 
+  Event::Event(int id, double time, task::Job * job,
 	       int type, int sig){
+    this->id = id;
     this->time = time;
-    this->task = task;
+    this->job = job;
     this->type = type;
     this->sig = sig;
-    this->id = id;
-    
+    assign_signal_process();
   }
 
+  /**
+   * Prints the event type 
+   * Can be reimplemented for other usage of the sim engine 
+   */
+  std::string Event::string_type(){
+    switch(type){
+    case TASK_ARRIVAL : return "task_arrival"; 
+    case TASK_REBOOTED: return "task_arrival";
+    case TASK_KILLED : return "task_compelete";
+    case TASK_FINISHED : return "task_compelete"; 
+    case ACTIVE_STATE_EXHAUSTED : return "task_complete";
+    case CONTENDING_STATE_EXITID : return "task_complete";
+    default : return "UNKNOWN"; 
+    }
+    return "UNKNOWN";
+  }
+
+  /**
+   * Assigns the processing to achieve for each signal
+   * Must be reimplemented for other usage of the sim engine 
+   */
   void Event::assign_signal_process(){
     switch(type){
     case TASK_ARRIVAL : process = &(sched::task_arrival); sig=20;
@@ -106,13 +132,18 @@ namespace sim_engine {
     default : fatal_error(0, "UNDEFINED SIMULATION SIGNAL"); 
     }
   }
+  /**
+   * Destructor of event 
+   */
   Event::~Event(){
   }
 
+  /** 
+   * Displays the event
+   */
   void Event::display(){
-    std::cout<<"[Event Id : "<< id << ", t:"<<time <<// ",
-						     // Task:"<<task->_id()
-						       ", Type:"<< type<<", Sig:"<<sig <<"]"<<std::endl; 
-  }
+    std::cout<<"[Event Id : "<< id <<", TID :"<< job->_task()->_id()<< ", t:"<<time <<// ",
+      // Task:"<<task->_id()
+      ", Type:"<< this->string_type()<<", Sig:"<<sig <<"]"<<std::endl; 
+  } 
 }
-  

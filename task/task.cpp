@@ -1,5 +1,5 @@
 #include "task.hpp"
-
+ 
 #include "../common/common.hpp"
 namespace task {
 
@@ -12,71 +12,6 @@ namespace task {
   }
 
 
-
-  void Task::postpone_d(){
-  }
-  
-  /**  
-   * Getter of budget
-   */
-  double Task::_budget(){
-    return this->budget;
-  }
-  /**
-   * setter of budget
-   * @param budget The budget to set
-   */
-  void Task::_budget(double budget){
-    this->budget=budget;
-  }
-
-  /**  
-   * Getter of v
-   */
-  double Task::_v(){
-    return this->v;
-  }
-  /**
-   * setter of v
-   * @param v The v to set
-   */
-  void Task::_v(double v){
-    this->v=v;
-  }
-
-  void Task::compute_remaining(){
-  }
-  void Task::update_v(){
-  }
-
-  /**  
-   * Getter of remaining
-   */
-  double Task::_remaining(){
-    return this->remaining;
-  }
-  /**
-   * setter of remaining
-   * @param remaining The remaining to set
-   */
-  void Task::_remaining(double remaining){
-    this->remaining=remaining;
-  }
-
-  
-  /**  
-   * Getter of bw
-   */
-  double Task::_bw(){
-    return this->bw;
-  }
-  /**
-   * setter of bw
-   * @param bw The bw to set
-   */
-  void Task::_bw(double bw){
-    this->bw=bw;
-  }
   
   /**  
    * Getter of proc
@@ -85,27 +20,13 @@ namespace task {
     return this->proc;
   }
 
-  /**  
-   * Getter of state
-   */
-  int Task::_state(){
-    return this->state;
-  }
-  /**
-   * setter of state
-   * @param state The state to set
-   */
-  void Task::_state(int state){
-    this->state=state;
-  }
-
   
-  
-  Task::Task(int id, int D, int T, double C_fmax){
+  Task::Task(int id, double D, double T, double C_fmax, Server *server){
     this->id = id;
     this->D = D;
     this->T = T;
     this-> C_fmax = C_fmax;
+    this->server = server;
   }
 
  
@@ -135,7 +56,7 @@ namespace task {
   /** 
       Getter of Period T 
   */ 
-  int Task::_T(){
+  double Task::_T(){
     return T;
   }
  
@@ -143,25 +64,40 @@ namespace task {
    * setter of  T 
    * @param T The Period T to set 
    */
-  void  Task::_T(int period){
+  void  Task::_T(double period){
     this->T = period;
   }
 
   /** 
       Getter of D 
-  */ 
-  int Task::_D(){
+  */
+  
+  double Task::_D(){
     return this->D;
   }
   /**  
    * setter of D 
    * @param D The D to set 
    */
-  void  Task::_D(int deadline){
+  void Task::_D(double deadline){
     this->D = deadline;
   }
 
 
+  /**  
+   * Getter of server
+   */
+  Server * Task::_server(){
+    return this->server;
+  }
+  
+  /**
+   * setter of server
+   * @param server The server to set
+   */
+  void Task::_server(Server * server){
+    this->server=server;
+  }
   
   /**
    * Calculate the utilization of the task.
@@ -173,20 +109,18 @@ namespace task {
   }
 
 
+  /** 
+   * Computes the execution time when the processor is operating at speed s 
+   * @param s is the processor speed 
+   * @return The execution time at speed s
+   */
   double Task::C(double s){
     return C_fmax * s; 
   }
+  
   /**
    * The task destructor 
    */
   Task::~Task(){
-  }
-
-
-  
-  int Task::arm_act_cont_timer(double time){
-    // This function adds an event of active_contending to the event list
-    return 0; 
-  }
-
+  }  
 }

@@ -1,7 +1,7 @@
 #ifndef EVENT_HPP
 #define EVENT_HPP
 
-#include "../task/task.hpp"
+#include "../task/job.hpp"
 #include "../common/common.hpp"
 
 #define TASK_ARRIVAL 0
@@ -15,23 +15,23 @@ namespace sim_engine {
   class Event {
   private : 
     double time;
-    task::Task * task;
+    task::Job * job;
     int type;
     int sig;
     int id;
     
   public:
     void assign_signal_process();
-    void (*process)(task::Task * tau, int sig);
-    Event(int id, double time, task::Task * tau, int type, int sig);
+    void (*process)(task::Job * job, int sig);
+    Event(int id, double time, task::Job * tau, int type, int sig);
     ~Event();
     int _id();
     void _id(int id);
-    
+    std::string string_type();
     double _time();
     void _time(double t);
-    task::Task * _task();
-    void _task(task::Task *tau);
+    task::Job * _job();
+    void _job(task::Job *job);
     void _type(int type);
     void _sig(int sig);
     int _type();
@@ -43,7 +43,7 @@ namespace sim_engine {
   struct CompareEvent { 
     bool operator()(Event *p1, Event *p2) 
     { 
-      return p1->_time() < p2->_time(); 
+      return p1->_time() > p2->_time(); 
     } 
   }; 
 }

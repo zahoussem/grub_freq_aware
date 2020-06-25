@@ -2,10 +2,17 @@
 
 namespace platform{
 
+  /** 
+   * The constructor of the class processor 
+   */
   Processor::Processor() {
     this->tq = new task::Taskset(-1);
   }
-  
+
+  /**
+   * Checks the schedulability using utilization based test 
+   * @return true if the test succeed, otherwise it returns false
+   */
   bool Processor::check_utilization(double speed){
     return tq->utilization(speed)>1;
   }
@@ -24,7 +31,11 @@ namespace platform{
   task::Runqueue * Processor::_rq(){
     return this->rq;
   }
-  
+
+  /**
+   * Constructor of class processor of identifier id 
+   * @param id : The identifier of the processor 
+   */ 
   Processor::Processor(int id) {
     this->id=id; 
     this->tq = new task::Taskset(id);
@@ -45,6 +56,9 @@ namespace platform{
     return id;
   }
 
+  /* 
+   * Prints the task queue allocated to this processor 
+   */ 
   void Processor::print_tq(){
     std::cout<<"[Proc : "<<_id()<<"=> ";
     for (int i=0;i<tq->_size();i++)

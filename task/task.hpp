@@ -4,6 +4,7 @@
 
 
 #include "../platform/processor.hpp"
+#include "server.hpp"
 
 namespace platform {
   class Processor;
@@ -16,48 +17,28 @@ namespace task {
   class Task {
   private:
     int id;
-    int D;
-    int T;
+    double D;
+    double T;
     double C_fmax;
-    double bw;
     platform::Processor * proc;
-    double budget;
-    double v;
-    double remaining;
-    double d;
-    int state;
-  public:
-
-    int _state();
-    void _state(int state);
-    double _v();
-    void _v(double v);
+    Server *server;
     
-    double _bw();
-    void _bw(double bw);
-    void _budget(double budget);
-    double _budget();
-    void postpone_d();
+  public:
+    Server * _server();
+    void _server(Server * server);
     platform::Processor * _proc();
     void _proc(platform::Processor * p);
     int _id();
     void _id(int id);
-    int _D();
-    void _D(int D);
-    int _T();
-    void _T(int T);
+    double _D();
+    void _D(double D);
+    double _T();
+    void _T(double D);
     double C(double s);
-    Task(int id, int D, int T, double C_fmax);
+    Task(int id, double D, double T, double C_fmax, Server * s);
     void display();
     double utilization(double s);
-    ~Task();
-    int arm_act_cont_timer(double time);
-
-    double _remaining();
-    void _remaining(double remaining);
-    void compute_remaining();
-    void update_v();
-    
+    ~Task(); 
   };
 }
 #endif

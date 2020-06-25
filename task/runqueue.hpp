@@ -15,11 +15,10 @@ namespace task {
     int id;
     Task *running;
     double a_bw;
+    // Houssam : I need to add the runqueue structure here 
   public :
-
     double _a_bw();
     void _a_bw(double a_bw);
-    
     int _id();
     void _id(int id);
     Task * _running();
@@ -28,9 +27,9 @@ namespace task {
     bool remove_bw(double bw);
     int _size();
     Task * pick_next_task();
-    bool remove(Task * tau);
-    bool add(Task * tau);
-    void add_bw(double bw);
+    bool remove_task(Task * tau);
+    bool add_task(Task * tau);
+    bool add_bw(double bw);
   };  
 }
 

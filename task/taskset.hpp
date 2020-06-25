@@ -10,26 +10,26 @@
 #include <iostream>
 #include <fstream> 
 #include <sstream>
-
+#include <vector>
 namespace task {
   class Task;
 
   class Taskset{
   private:
-    common::List<Task *> *list;
     int id;
+    std::vector<Task *> *list;
   public:
     
     bool destroy_tasks();
-    common::List<double> *UUniFastDiscard(int nbT,double u,int nbSet);
-    common::List<double> *UUniFast(int nbT,double u);
+    std::vector<double> *UUniFastDiscard(int nbT,double u,unsigned int nbSet);
+    std::vector<double> *UUniFast(int nbT,double u);
     double  randomDouble(double a, double b);
     bool check_acceptance(Task *tau);
 
     double utilization(double speed);
     int _size();
-    common::List<Task *> *_list();
-    void _list(common::List<Task *> * list);
+    std::vector<Task *> *_list();
+    void _list(std::vector<Task *> * list);
     void  add(Task * tau);
     bool  remove(Task * tau);
     void merge(Taskset *ts);
@@ -53,7 +53,6 @@ namespace task {
     Taskset* params_copy();
     Task * find_task_by_deadline(int D);
     void generate_taskset(int nbT, double  U, double DP);
-
 
   };
 }

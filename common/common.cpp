@@ -20,7 +20,7 @@ void PRINT_DEBUG(std::string str){
 void PRINT_DEBUG_(std::string str){
 #ifdef DEBUG_
   std::cout << "\033[1;34m PRINT_DEBUG : \033[0m ";
-  std::cout << str << std::endl;
+  std::cout << str;
 #endif
 }
 
