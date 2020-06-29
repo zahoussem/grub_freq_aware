@@ -1,5 +1,4 @@
 #include "event.hpp"
-#include "../sched/sched.hpp"
 
 namespace sim_engine {
 
@@ -117,17 +116,17 @@ namespace sim_engine {
    */
   void Event::assign_signal_process(){
     switch(type){
-    case TASK_ARRIVAL : process = &(sched::task_arrival); sig=20;
+    case TASK_ARRIVAL : process = sched::task_arrival; sig=20;
       break;
-    case TASK_REBOOTED: process = &(sched::task_arrival), sig = 21;
+    case TASK_REBOOTED: process = sched::task_arrival, sig = 21;
       break;
-    case TASK_KILLED : process = &(sched::task_complete), sig = 10;
+    case TASK_KILLED : process = sched::task_completion, sig = 10;
       break;
-    case TASK_FINISHED : process = &(sched::task_complete), sig = 11;
+    case TASK_FINISHED : process = sched::task_completion, sig = 11;
       break;
-    case ACTIVE_STATE_EXHAUSTED : process = &(sched::task_complete), sig = 0;
+    case ACTIVE_STATE_EXHAUSTED : process = sched::task_completion, sig = 0;
       break;
-    case CONTENDING_STATE_EXITID : process = &(sched::task_complete), sig = 0;
+    case CONTENDING_STATE_EXITID : process = sched::task_completion, sig = 0;
       break;
     default : fatal_error(0, "UNDEFINED SIMULATION SIGNAL"); 
     }

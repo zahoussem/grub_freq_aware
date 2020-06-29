@@ -2,34 +2,21 @@
  
 #include "../common/common.hpp"
 namespace task {
-
-  /**  
-   * setter of proc
-   * @param proc The proc to set
-   */
-  void Task::_proc(platform::Processor * proc){
-    this->proc=proc;
-  }
-
-
   
-  /**  
-   * Getter of proc
-   */
-  platform::Processor * Task::_proc(){
-    return this->proc;
-  }
-
-  
-  Task::Task(int id, double D, double T, double C_fmax, Server *server){
+  Task::Task(int id, double D, double T, double C_fmax){
     this->id = id;
     this->D = D;
     this->T = T;
     this-> C_fmax = C_fmax;
-    this->server = server;
   }
 
- 
+
+  void Task::add_predepandency(Task *tau){
+  }
+  
+  void Task::post_postdepandency(Task *tau){ 
+  }
+
   /** 
    *@return : returns the task id 
    */
@@ -82,32 +69,20 @@ namespace task {
   void Task::_D(double deadline){
     this->D = deadline;
   }
-
-
-  /**  
-   * Getter of server
-   */
-  Server * Task::_server(){
-    return this->server;
-  }
-  
-  /**
-   * setter of server
-   * @param server The server to set
-   */
-  void Task::_server(Server * server){
-    this->server=server;
-  }
   
   /**
    * Calculate the utilization of the task.
    * @param s : The processor speed
    * @return The task utilization
    */
-  double Task::utilization(double s){
+  double Task::_bw(double s){
     return (C(s))/((double)T);
   }
 
+
+  bool Task::is_ready(){
+    return true;
+  }
 
   /** 
    * Computes the execution time when the processor is operating at speed s 
@@ -122,5 +97,6 @@ namespace task {
    * The task destructor 
    */
   Task::~Task(){
-  }  
+
+  }
 }

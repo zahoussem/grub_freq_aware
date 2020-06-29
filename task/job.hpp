@@ -5,6 +5,8 @@
 #include "../common/common.hpp"
 
 namespace task {
+  class Task; 
+  
   class Job {
 
   private :

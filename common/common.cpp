@@ -3,31 +3,41 @@
 #define DEBUG_
 
 
-void fatal_error(int ErrorCode, std::string Message){
-   std::cerr << "\033[1;31m ERROR CODE ("+std::to_string(ErrorCode)+"): \033[0m ";
-   std::cerr << Message  << std::endl;
+void fatal_error(int ErrorCode, std::string Message)
+{
+  std::cerr << "\033[1;31m ERROR CODE (" + std::to_string(ErrorCode) + "): \033[0m ";
+  std::cerr << Message << std::endl;
   exit(-1);
 }
 
+sched::Scheduler * scheduler; 
 
-void PRINT_DEBUG(std::string str){
+
+sched::Scheduler * _schedule(){
+  return scheduler;
+}
+
+
+void PRINT_DEBUG(std::string str)
+{
 #ifdef DEBUG
   std::cout << "\033[1;34m PRINT_DEBUG : \033[0m ";
   std::cout << str << std::endl;
 #endif
 }
 
-void PRINT_DEBUG_(std::string str){
+void PRINT_DEBUG_(std::string str)
+{
 #ifdef DEBUG_
   std::cout << "\033[1;34m PRINT_DEBUG : \033[0m ";
   std::cout << str;
 #endif
 }
 
-
-void PRINT_WARNING(std::string str){
+void PRINT_WARNING(std::string str)
+{
 #ifdef DEBUG_
   std::cout << "\033[1;32m PRINT_WARNING : \033[0m ";
   std::cout << str << std::endl;
 #endif
- }
+}

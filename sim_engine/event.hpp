@@ -3,13 +3,9 @@
 
 #include "../task/job.hpp"
 #include "../common/common.hpp"
+#include "../sched/scheduler.hpp"
 
-#define TASK_ARRIVAL 0
-#define TASK_KILLED 1 
-#define TASK_FINISHED 2 
-#define ACTIVE_STATE_EXHAUSTED 3 
-#define CONTENDING_STATE_EXITID 4
-#define TASK_REBOOTED 5 
+
 namespace sim_engine {
 
   class Event {

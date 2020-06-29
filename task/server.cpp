@@ -83,17 +83,17 @@ namespace task
   /**  
    * Getter of budget
    */
-  double Server::_budget()
+  double Server::_budget(double speed)
   {
-    return this->budget;
+    return this->budget/speed;
   }
   /**
    * setter of budget
    * @param budget The budget to set
    */
-  void Server::_budget(double budget)
+  void Server::_budget(double budget, double speed)
   {
-    this->budget = budget;
+    this->budget = budget/speed;
   }
 
   /**  
@@ -149,18 +149,18 @@ namespace task
   /**  
    * Getter of bw
    */
-  double Server::_bw()
+  double Server::_bw(double speed)
   {
-    return this->bw;
+    return this->bw/speed;
   }
 
   /**
    * setter of bw
    * @param bw The bw to set
    */
-  void Server::_bw(double bw)
+  void Server::_bw(double bw, double speed)
   {
-    this->bw = bw;
+    this->bw = bw/speed;
   }
 
   /** 

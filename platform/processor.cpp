@@ -13,8 +13,8 @@ namespace platform{
    * Checks the schedulability using utilization based test 
    * @return true if the test succeed, otherwise it returns false
    */
-  bool Processor::check_utilization(double speed){
-    return tq->utilization(speed)>1;
+  bool Processor::check_bw(double speed){
+    return tq->bw(speed)>1;
   }
 
   /**  
@@ -24,6 +24,12 @@ namespace platform{
   void Processor::_rq(task::Runqueue * rq){
     this->rq=rq;
   }
+
+
+  double Processor::_bw(double speed){
+    return rq->_bw(speed);
+  }
+    
 
   /**  
    * Getter of rq

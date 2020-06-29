@@ -1,11 +1,8 @@
 #ifndef TASKSET_HPP
 #define TASKSET_HPP
 
-#include "../common/list.hpp"
 #include "../common/common.hpp"
-
 #include "task.hpp"
-#include "../platform/processor.hpp"
 
 #include <iostream>
 #include <fstream> 
@@ -21,12 +18,10 @@ namespace task {
   public:
     
     bool destroy_tasks();
-    std::vector<double> *UUniFastDiscard(int nbT,double u,unsigned int nbSet);
-    std::vector<double> *UUniFast(int nbT,double u);
-    double  randomDouble(double a, double b);
-    bool check_acceptance(Task *tau);
+    double randomDouble(double a, double b);
+    bool check_acceptance(Task *tau, double speed);
 
-    double utilization(double speed);
+    double bw(double speed);
     int _size();
     std::vector<Task *> *_list();
     void _list(std::vector<Task *> * list);
@@ -44,7 +39,7 @@ namespace task {
     void display();
 
     void sort(int METHOD); 
-    void sort_by_U(int method, double speed);
+    void sort_by_U(int method);
     void sort_by_D();
     
     Taskset(std::string path);

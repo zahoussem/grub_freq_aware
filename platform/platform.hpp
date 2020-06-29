@@ -1,16 +1,18 @@
 #ifndef PLATFORM_HPP
 #define PLATFORM_HPP
 
-
-#include "../common/list.hpp"
 #include "processor.hpp"
 
 #include <vector>
 
 namespace platform{
+  
+  class Processor;
+  
   class Platform{
   private:
-    std::vector<platform::Processor *> *processors;
+
+    std::vector<Processor *> *processors;
     double cost=0;
       
   public:

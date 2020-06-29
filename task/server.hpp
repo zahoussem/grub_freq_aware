@@ -22,10 +22,12 @@ namespace task {
     void _state(int state);
     double _v();
     void _v(double v);    
-    double _bw();
-    void _bw(double bw);
-    void _budget(double budget);
-    double _budget();
+    
+    double _bw(double speed);
+    void _bw(double bw, double speed);
+
+    void _budget(double budget, double speed);
+    double _budget(double speed);
     void postpone_d();
     void _d(double d);
     double _d();
